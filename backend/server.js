@@ -70,21 +70,33 @@ app.use(errorHandler);
 
 // Connect to Database and then start server
 const startServer = async () => {
+  console.log('--- Starting Server Startup Sequence ---');
+  console.log('Checking Environment Variables:');
+  console.log(`- NODE_ENV: ${process.env.NODE_ENV}`);
+  console.log(`- PORT: ${process.env.PORT || 'Not set (will use 5001)'}`);
+  console.log(`- MONGODB_URI: ${process.env.MONGODB_URI ? 'Present (Hidden)' : 'MISSING ❌'}`);
+  console.log(`- JWT_SECRET: ${process.env.JWT_SECRET ? 'Present' : 'MISSING ❌'}`);
+  
   try {
+    console.log('Attempting to connect to MongoDB...');
     await connectDB();
+    console.log('MongoDB Connected successfully!');
     
     const PORT = process.env.PORT || 5001;
-    const server = app.listen(PORT, () => {
+    const server = app.listen(PORT, '0.0.0.0', () => {
       console.log(`🚀 ExpensePro API running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
+      console.log('--- Startup Sequence Complete ---');
     });
 
     // Handle unhandled promise rejections
     process.on('unhandledRejection', (err) => {
-      console.error('❌ Unhandled Rejection:', err.message);
-      server.close(() => process.exit(1));
+      console.error('❌ Unhandled Rejection at startup:', err.message);
+      if (server) server.close(() => process.exit(1));
+      else process.exit(1);
     });
   } catch (err) {
-    console.error('❌ Failed to start server:', err.message);
+    console.error('❌ CRITICAL ERROR during server startup:');
+    console.error(err.stack || err.message);
     process.exit(1);
   }
 };
