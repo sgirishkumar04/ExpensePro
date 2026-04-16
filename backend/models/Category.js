@@ -10,6 +10,7 @@ const DEFAULT_CATEGORIES = [
   { name: 'Medical', icon: '🏥', color: '#ef4444' },
   { name: 'Education', icon: '📚', color: '#10b981' },
   { name: 'Investments', icon: '📈', color: '#14b8a6' },
+  { name: 'Loans & Refunds', icon: '🫂', color: '#8b5cf6' },
   { name: 'Others', icon: '📦', color: '#6b7280' },
 ];
 
