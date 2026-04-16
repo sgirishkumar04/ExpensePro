@@ -66,8 +66,8 @@ import { Expense, Category, Account, Pagination, ExpenseFilters } from '../model
                 <th>Title</th>
                 <th>Category</th>
                 <th>Amount</th>
-                <th>Date</th>
-                <th>Payment</th>
+                <th class="hide-mobile">Date</th>
+                <th class="hide-mobile">Payment</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -86,8 +86,8 @@ import { Expense, Category, Account, Pagination, ExpenseFilters } from '../model
                   <td>
                     <span class="font-bold text-red-500">−{{ exp.amount | currency:(user?.currency || 'INR'):'symbol':'1.0-0' }}</span>
                   </td>
-                  <td class="text-sm" style="color: var(--text-muted)">{{ exp.date | date:'dd MMM yyyy' }}</td>
-                  <td><span class="ep-badge-info">{{ exp.paymentMethod }}</span></td>
+                  <td class="text-sm hide-mobile" style="color: var(--text-muted)">{{ exp.date | date:'dd MMM yyyy' }}</td>
+                  <td class="hide-mobile"><span class="ep-badge-info">{{ exp.paymentMethod }}</span></td>
                   <td>
                     <div class="flex items-center gap-1">
                       <button class="ep-btn-icon ep-btn-sm" (click)="openModal(exp)" title="Edit">✏️</button>

@@ -54,6 +54,7 @@
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.25), 0 2px 4px -2px rgba(0,0,0,0.2);
   --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -4px rgba(0,0,0,0.2);
   --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.35), 0 8px 10px -6px rgba(0,0,0,0.25);
+  color-scheme: dark;
 }
 
 /* ============================
@@ -214,6 +215,12 @@ body {
     background-position: right 12px center;
     background-size: 18px;
     padding-right: 40px;
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+  }
+  .ep-select option {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
   }
   .ep-textarea {
     @apply ep-input;
@@ -234,9 +241,14 @@ body {
 
   /* Table */
   .ep-table-wrapper {
-    @apply rounded-2xl overflow-hidden;
+    @apply rounded-2xl overflow-x-auto;
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
+    -webkit-overflow-scrolling: touch;
+  }
+  /* Responsive table column hides */
+  @media (max-width: 640px) {
+    .hide-mobile { display: none !important; }
   }
   .ep-table {
     @apply w-full text-sm;

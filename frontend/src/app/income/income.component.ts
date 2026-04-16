@@ -65,7 +65,7 @@ import { Income, Account, Pagination, IncomeFilters } from '../models';
           </div>
         } @else {
           <table class="ep-table">
-            <thead><tr><th>Source</th><th>Type</th><th>Amount</th><th>Date</th><th>Account</th><th>Actions</th></tr></thead>
+            <thead><tr><th>Source</th><th>Type</th><th>Amount</th><th class="hide-mobile">Date</th><th class="hide-mobile">Account</th><th>Actions</th></tr></thead>
             <tbody>
               @for (inc of incomes; track inc._id) {
                 <tr>
@@ -75,8 +75,8 @@ import { Income, Account, Pagination, IncomeFilters } from '../models';
                   </td>
                   <td><span class="ep-badge-primary">{{ inc.type }}</span></td>
                   <td><span class="font-bold text-emerald-500">+{{ inc.amount | currency:(user?.currency||'INR'):'symbol':'1.0-0' }}</span></td>
-                  <td class="text-sm" style="color: var(--text-muted)">{{ inc.date | date:'dd MMM yyyy' }}</td>
-                  <td class="text-sm" style="color: var(--text-muted)">{{ inc.account?.name || '—' }}</td>
+                  <td class="text-sm hide-mobile" style="color: var(--text-muted)">{{ inc.date | date:'dd MMM yyyy' }}</td>
+                  <td class="text-sm hide-mobile" style="color: var(--text-muted)">{{ inc.account?.name || '—' }}</td>
                   <td>
                     <div class="flex gap-1">
                       <button class="ep-btn-icon ep-btn-sm" (click)="openModal(inc)">✏️</button>
