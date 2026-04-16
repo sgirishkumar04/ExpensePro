@@ -206,7 +206,12 @@ export class ReportsComponent implements OnInit {
   maxCatTotal = 0;
 
   // Chart config objects (arrow functions must be here, not in templates)
-  readonly chartTooltip = { y: { formatter: (v: number) => '₹' + v.toLocaleString('en-IN') } };
+  // Fix: Add theme 'dark' and better styling for tooltips in dark mode
+  readonly chartTooltip = {
+    theme: 'dark',
+    style: { fontSize: '12px', fontFamily: 'Inter' },
+    y: { formatter: (v: number) => '₹' + v.toLocaleString('en-IN') }
+  };
   readonly barChart: any = { type: 'bar', height: 280, toolbar: { show: false }, zoom: { enabled: false } };
   readonly lineChart: any = { type: 'line', height: 280, toolbar: { show: false }, zoom: { enabled: false } };
   readonly barYaxis = { labels: { style: { colors: '#94a3b8', fontSize: '11px' }, formatter: (v: number) => v >= 1000 ? (v / 1000).toFixed(0) + 'K' : String(v) } };

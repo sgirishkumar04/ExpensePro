@@ -202,7 +202,12 @@ export class DashboardComponent implements OnInit {
   catColors: string[] = [];
 
   // Arrow functions must be in class, not template
-  readonly chartTooltip = { y: { formatter: (v: number) => '₹' + v.toLocaleString('en-IN') } };
+  // Fix: Add theme 'dark' and better styling for tooltips in dark mode
+  readonly chartTooltip = {
+    theme: 'dark',
+    style: { fontSize: '12px', fontFamily: 'Inter' },
+    y: { formatter: (v: number) => '₹' + v.toLocaleString('en-IN') }
+  };
   readonly trendChart: any = { type: 'area', height: 260, toolbar: { show: false }, zoom: { enabled: false }, animations: { enabled: true } };
   readonly trendYaxis = { labels: { style: { colors: '#94a3b8', fontSize: '11px' }, formatter: (v: number) => v >= 1000 ? (v / 1000).toFixed(0) + 'K' : String(v) } };
   trendXaxis: any = { categories: [], labels: { style: { colors: '#94a3b8', fontSize: '11px' } }, axisBorder: { show: false }, axisTicks: { show: false } };
