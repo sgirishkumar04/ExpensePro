@@ -168,7 +168,7 @@ export class IncomeComponent implements OnInit {
   pagination: Pagination = { page: 1, limit: 10, total: 0, pages: 0 };
   filters: IncomeFilters = { page: 1, limit: 10 };
   form = { source: '', type: 'Salary', amount: 0, date: new Date().toISOString().split('T')[0], account: '', notes: '' };
-  incomeTypes = ['Salary', 'Freelance', 'Business', 'Investment', 'Bonus', 'Gift', 'Rental', 'Side Income', 'Other'];
+  incomeTypes = ['Salary', 'Freelance', 'Business', 'Investment', 'Bonus', 'Gift', 'Rental', 'Side Income', 'Refund', 'Repayment', 'Other'];
   private searchTimer: any;
 
   get user() { return this.authService.user(); }
